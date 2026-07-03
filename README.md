@@ -1,6 +1,6 @@
 # NOAZIKI // CLEANER
 
-A simple Linux cleanup script made for 42 / 1337 environments.
+A simple Linux cleanup tool made for 42 / 1337 environments.
 
 It cleans common user caches and temporary files to recover disk space without touching your projects.
 
@@ -18,6 +18,7 @@ It cleans common user caches and temporary files to recover disk space without t
 * Cleans Trash
 * Shows available storage after cleaning
 * Shows how much storage was freed
+* Provides a global `nclean` command
 
 ## /goinfre Protection
 
@@ -47,15 +48,43 @@ git clone git@github.com:nouhailaaziki/noaziki-cleaner.git
 cd noaziki-cleaner
 ```
 
-Make the script executable:
+Run the installer:
+
+```bash
+./install.sh
+```
+
+The installer:
+
+* Installs the cleaner as `nclean`
+* Creates `~/.local/bin` if needed
+* Adds `~/.local/bin` to your shell PATH
+* Supports Bash and Zsh
+
+After installation, you can run the cleaner from anywhere:
+
+```bash
+nclean
+```
+
+If the current shell does not recognize `nclean`, restart your terminal or run:
+
+```bash
+source ~/.zshrc
+```
+
+For Bash:
+
+```bash
+source ~/.bashrc
+```
+
+## Manual Usage
+
+You can also run the cleaner directly without installing the global command:
 
 ```bash
 chmod +x cleaner.sh
-```
-
-Run it:
-
-```bash
 ./cleaner.sh
 ```
 
@@ -93,6 +122,32 @@ Some caches may need to be downloaded again when you build projects.
 For example, clearing Maven or Gradle caches can cause Java dependencies to be downloaded again.
 
 Use the script when you actually need to recover disk space.
+
+## Uninstall
+
+To remove the global `nclean` command:
+
+```bash
+rm ~/.local/bin/nclean
+```
+
+If you also want to remove the PATH entry added by the installer, remove this line from your shell configuration:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+For Zsh:
+
+```bash
+nano ~/.zshrc
+```
+
+For Bash:
+
+```bash
+nano ~/.bashrc
+```
 
 ## Author
 
